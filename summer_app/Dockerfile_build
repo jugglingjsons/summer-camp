@@ -1,0 +1,7 @@
+FROM alpine
+
+RUN apk update
+
+ADD summer_app /summer_app
+
+ENTRYPOINT [ "/summer_app" ]

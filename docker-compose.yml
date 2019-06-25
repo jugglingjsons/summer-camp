@@ -1,0 +1,12 @@
+version: "2"
+services:
+  summer_app:
+    build:
+      context: .
+      dockerfile: summer_app/Dockerfile
+    restart: always
+    volumes:
+    - .:/go/src/github.com/jadczakd/summer-camp
+    container_name: summer_app
+    ports:
+    - 8800:8081

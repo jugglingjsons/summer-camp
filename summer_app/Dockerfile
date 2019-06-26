@@ -1,9 +1,10 @@
 FROM golang
 
-RUN mkdir -p /go/src/github.com/jadczakd/summer-camp/
+RUN mkdir -p /go/src/github.com/jadczakd/summer-camp
 
-ADD . /go/src/github.com/jadczakd/summer-camp/
-WORKDIR /go/src/github.com/jadczakd/summer-camp/summer_app
+WORKDIR /go/src/github.com/jadczakd/summer-camp
+
+ADD . /go/src/github.com/jadczakd/summer-camp
 
 RUN go get  -t -v ./...
 RUN go get  github.com/canthefason/go-watcher

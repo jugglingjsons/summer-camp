@@ -1,7 +1,9 @@
 FROM alpine
 
-RUN apk update
+RUN mkdir -p /app
 
-ADD summer_app /summer_app
+COPY summer_app /app
 
-ENTRYPOINT [ "/summer_app" ]
+EXPOSE 8081
+
+ENTRYPOINT [ "./app/summer_app" ]

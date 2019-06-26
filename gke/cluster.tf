@@ -5,7 +5,7 @@ resource "google_container_cluster" "summer-service" {
   name               = "summer-service"
   location               = "us-east1-b"
   initial_node_count = 2
-
+  
   addons_config {
     network_policy_config {
       disabled = true
@@ -18,6 +18,7 @@ resource "google_container_cluster" "summer-service" {
   }
 
   node_config {
+    machine_type = "g1-small"
     oauth_scopes = [
       "https://www.googleapis.com/auth/devstorage.read_only",
       "https://www.googleapis.com/auth/logging.write",

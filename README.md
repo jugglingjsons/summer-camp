@@ -7,6 +7,7 @@ Install:
 - google-cloud-sdk
 - kubectl
 - terraform (v0.11.14) - you can use tfswitch to manage those
+- install the dependancies - I suggest using docker-compose up from the root repository for local development of services.
 ## On MacOs:
 ```
 cat <<-"BREWFILE" > Brewfile
@@ -29,6 +30,12 @@ export DOCKER_HUB_USER="" // provide your username
 ```
 export GOOGLE_APPLICATION_CREDENTIALS="" -path to creds in json format
 ```
+## Deployment - won't work without the step above as make is making use of some of the variables
+It will push to two image hosting repositories for now. Both gcp - requried for the terraform build on gcp and docker hub - to allow for public image sharing.
+```
+cd summer_app
+make build
+```
 - Initialize terraform & deploy the app to kubernetes onto the context provided in the cli context.
 ```
 terraform init
@@ -41,9 +48,8 @@ kubectl get service
 ```
 # Development:
 - recommended: run the app with docker-compose up from the root of the project. Mind you it will take a while to build if there are more microservces present.
-# Usage:
-## Available endpoints:
-### Locally:
+# Available endpoints:
+## Locally:
 - curl -d '{"payload":"bazinga"}' -H "Content-Type: application/json" -X POST http://localhost:8800/create
 Should respond with approximately:
 ```
@@ -60,15 +66,9 @@ responds with:
 }
 ```
 and status 200
-### Online: responds similarly to the above
+## Online: responds similarly to the above
 - curl -d '{"payload":"bazinga"}' -H "Content-Type: application/json" -X POST 35.227.104.181:80/create
 - curl 35.227.104.181:80/health
-## Deployment
-It will push to two image hosting repositories for now. Both gcp - requried for the terraform build on gcp and docker hub - to allow for public image sharing.
-```
-cd summer_app
-make build
-```
 
 ## Get deployed instances & ip addresses
 ```
